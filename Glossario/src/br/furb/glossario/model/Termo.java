@@ -11,13 +11,30 @@ import java.util.ArrayList;
  * @author anaj2
  */
 public class Termo {
-    
+
     private String nome;
     private String descricao;
     private ArrayList<Obra> obras = new ArrayList<>();
-    
+
     protected Termo(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+//------------------------------------------------------------------------------
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String setNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }
