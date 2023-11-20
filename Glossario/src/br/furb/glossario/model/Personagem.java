@@ -19,5 +19,37 @@ public class Personagem extends Termo {
     protected Personagem(String nome, String descricao) {
         super(nome, descricao);
     }
- 
+//------------------------------------------------------------------------------
+    public void addCaracteristica(String entrada) {
+        if (entrada.isBlank()){
+            throw new IllegalArgumentException("Entrada invalida.");
+        }
+        caracteristica.add(entrada);
+    }
+    
+    public void addAtores(String entrada) {
+        if (entrada.isBlank()){
+            throw new IllegalArgumentException("Entrada invalida.");
+        }
+        atores.add(entrada);
+    }
+    
+    public void addFeitos(String entrada) {
+        if (entrada.isBlank()){
+            throw new IllegalArgumentException("Entrada invalida.");
+        }
+        feitos.add(entrada);
+    }
+    
+    public ArrayList<String> getCaracteristica() {
+        return caracteristica;
+    }
+    
+    public ArrayList<String> getAtores (){
+        return atores;
+    }
+    
+    public ArrayList<String> getFeitos (){
+        return feitos;
+    }
 }
