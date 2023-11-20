@@ -22,7 +22,7 @@ public class Obra {
 
 //------------------------------------------------------------------------------
     public void setTitulo(String titulo) {
-        if (titulo.isBlank() || titulo == null) {
+        if (titulo.isBlank()) {
             throw new IllegalArgumentException("Entrada para titulo "
                     + "invalida.");
         }

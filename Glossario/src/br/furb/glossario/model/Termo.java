@@ -23,7 +23,7 @@ public class Termo {
 
 //------------------------------------------------------------------------------
     public void setNome(String nome) {
-        if (nome.isBlank() || nome == null) {
+        if (nome.isBlank()) {
             throw new IllegalArgumentException("Entrada para nome "
                     + "invalida.");
         }
@@ -31,7 +31,7 @@ public class Termo {
     }
 
     public void setDescricao(String descricao) {
-        if (descricao.isBlank() || descricao == null) {
+        if (descricao.isBlank()) {
             throw new IllegalArgumentException("Entrada para descricao "
                     + "invalida.");
         }

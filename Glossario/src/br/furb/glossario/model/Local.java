@@ -19,7 +19,7 @@ public class Local extends Termo {
 
 //------------------------------------------------------------------------------
     public void setHistoria(String historia) {
-        if (historia.isBlank() || historia == null) {
+        if (historia.isBlank()) {
             throw new IllegalArgumentException("Entrada para historia "
                     + "invalida.");
         }
