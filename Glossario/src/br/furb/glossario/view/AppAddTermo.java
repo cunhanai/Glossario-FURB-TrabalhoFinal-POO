@@ -10,11 +10,14 @@ package br.furb.glossario.view;
  */
 public class AppAddTermo extends javax.swing.JDialog {
 
+    private java.awt.Frame parent;
+    
     /**
      * Creates new form AppAddTermo
      */
     public AppAddTermo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
     }
 
@@ -27,21 +30,94 @@ public class AppAddTermo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnAddPersonagem = new javax.swing.JButton();
+        btnAddLocal = new javax.swing.JButton();
+        btnAddTermo = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar termos"));
+
+        btnAddPersonagem.setText("Personagem");
+        btnAddPersonagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPersonagemActionPerformed(evt);
+            }
+        });
+
+        btnAddLocal.setText("Local");
+        btnAddLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddLocalActionPerformed(evt);
+            }
+        });
+
+        btnAddTermo.setText("Outros");
+        btnAddTermo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTermoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnAddPersonagem)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddLocal)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddTermo)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddPersonagem)
+                    .addComponent(btnAddLocal)
+                    .addComponent(btnAddTermo))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 334, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocalActionPerformed
+        AppAddTermoLocal dialog = new AppAddTermoLocal(parent, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAddLocalActionPerformed
+
+    private void btnAddTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTermoActionPerformed
+        AppAddTermoBasico dialog = new AppAddTermoBasico(parent, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAddTermoActionPerformed
+
+    private void btnAddPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPersonagemActionPerformed
+        AppAddTermoPersonagem dialog = new AppAddTermoPersonagem(parent, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAddPersonagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +162,9 @@ public class AppAddTermo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddLocal;
+    private javax.swing.JButton btnAddPersonagem;
+    private javax.swing.JButton btnAddTermo;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

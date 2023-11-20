@@ -76,7 +76,7 @@ public class AppUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPesquisar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(388, Short.MAX_VALUE))
         );
         pnlTermosLayout.setVerticalGroup(
             pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,12 +97,12 @@ public class AppUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnAddTermo))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnAddTermo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +118,8 @@ public class AppUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTermoActionPerformed
-        // TODO add your handling code here:
+        AppAddTermo dialog = new AppAddTermo(this, true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnAddTermoActionPerformed
 
     private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed

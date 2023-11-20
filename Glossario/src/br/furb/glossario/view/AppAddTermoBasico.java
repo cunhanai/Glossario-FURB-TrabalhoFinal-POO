@@ -27,21 +27,84 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlAdicionarTermo = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        txtTermo = new javax.swing.JTextField();
+        lblDescricao = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescricao = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        pnlAdicionarTermo.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar Termo"));
+
+        lblNome.setText("Nome:");
+
+        txtTermo.setToolTipText("");
+        txtTermo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTermoActionPerformed(evt);
+            }
+        });
+
+        lblDescricao.setText("Descrição:");
+
+        txtDescricao.setColumns(20);
+        txtDescricao.setRows(5);
+        jScrollPane1.setViewportView(txtDescricao);
+
+        javax.swing.GroupLayout pnlAdicionarTermoLayout = new javax.swing.GroupLayout(pnlAdicionarTermo);
+        pnlAdicionarTermo.setLayout(pnlAdicionarTermoLayout);
+        pnlAdicionarTermoLayout.setHorizontalGroup(
+            pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdicionarTermoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescricao)
+                    .addComponent(lblNome))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTermo)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
+        );
+        pnlAdicionarTermoLayout.setVerticalGroup(
+            pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdicionarTermoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescricao)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTermoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTermoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +149,11 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JPanel pnlAdicionarTermo;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtTermo;
     // End of variables declaration//GEN-END:variables
 }
