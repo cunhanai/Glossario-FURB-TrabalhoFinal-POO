@@ -9,14 +9,47 @@ package br.furb.glossario.model;
  * @author anaj2
  */
 public class Obra {
-    
+
     private String titulo;
     private int anoLancamento;
-    private EnumCategoria categotia;
-    
+    private EnumCategoria categoria;
+
     protected Obra(String titulo, int anoLancamento, EnumCategoria categoria) {
         this.titulo = titulo;
         this.anoLancamento = anoLancamento;
-        this.categotia = categoria;
+        this.categoria = categoria;
+    }
+
+//------------------------------------------------------------------------------
+    public void setTitulo(String titulo) {
+        if (titulo.isBlank() || titulo == null) {
+            throw new IllegalArgumentException("Entrada para titulo "
+                    + "invalida.");
+        }
+        this.titulo = titulo;
+    }
+
+    public void setAnoLancamento(int anoLancamento) {
+        if (anoLancamento >= 0) {
+            throw new IllegalArgumentException("Entrada para ano de "
+                    + "lancamento invalida.");
+        }
+        this.anoLancamento = anoLancamento;
+    }
+
+    public void setCategoria(EnumCategoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public int getAnoLancamento() {
+        return anoLancamento;
+    }
+
+    public EnumCategoria getCategoria() {
+        return categoria;
     }
 }

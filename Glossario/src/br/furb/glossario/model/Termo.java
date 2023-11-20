@@ -23,10 +23,18 @@ public class Termo {
 
 //------------------------------------------------------------------------------
     public void setNome(String nome) {
+        if (nome.isBlank() || nome == null) {
+            throw new IllegalArgumentException("Entrada para nome "
+                    + "invalida.");
+        }
         this.nome = nome;
     }
 
     public void setDescricao(String descricao) {
+        if (descricao.isBlank() || descricao == null) {
+            throw new IllegalArgumentException("Entrada para descricao "
+                    + "invalida.");
+        }
         this.descricao = descricao;
     }
 
