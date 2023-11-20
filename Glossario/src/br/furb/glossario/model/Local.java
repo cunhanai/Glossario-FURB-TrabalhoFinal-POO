@@ -9,11 +9,24 @@ package br.furb.glossario.model;
  * @author anaj2
  */
 public class Local extends Termo {
-    
+
     private String historia;
-    
+
     protected Local(String nome, String descricao, String historia) {
         super(nome, descricao);
         this.historia = historia;
+    }
+
+//------------------------------------------------------------------------------
+    public void setHistoria(String historia) {
+        if (historia.isBlank()) {
+            throw new IllegalArgumentException("Entrada para historia "
+                    + "invalida.");
+        }
+        this.historia = historia;
+    }
+
+    public String getHistoria() {
+        return historia;
     }
 }
