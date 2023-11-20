@@ -37,12 +37,20 @@ public class Termo {
         }
         this.descricao = descricao;
     }
+    
+    public void addObras(Obra obra) {
+        obras.add(obra);
+    }
 
-    public String setNome() {
+    public String getNome() {
         return nome;
     }
 
     public String getDescricao() {
         return descricao;
+    }
+    
+    public ArrayList<Obra> getObras() {
+        return obras;
     }
 }
