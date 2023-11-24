@@ -26,12 +26,15 @@ public class AppUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu3 = new javax.swing.JMenu();
         btnAddTermo = new javax.swing.JButton();
         pnlTermos = new javax.swing.JPanel();
         txtPesquisaTermo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTermos = new javax.swing.JList<>();
+
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,6 +171,7 @@ public class AppUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddTermo;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstTermos;
     private javax.swing.JPanel pnlTermos;

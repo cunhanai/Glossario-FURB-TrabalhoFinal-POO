@@ -4,12 +4,21 @@
  */
 package br.furb.glossario.view;
 
+import br.furb.glossario.model.EnumCategoria;
+import br.furb.glossario.model.Glossario;
+import br.furb.glossario.model.Obra;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author anaj2
  */
 public class AppAddTermoBasico extends javax.swing.JDialog {
 
+    private Glossario glossario = new Glossario();
+    private ArrayList<Obra> tempObras = new ArrayList<Obra>();
+    
     /**
      * Creates new form AppAddTermoBasico
      */
@@ -27,12 +36,30 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgCategoria = new javax.swing.ButtonGroup();
         pnlAdicionarTermo = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtTermo = new javax.swing.JTextField();
         lblDescricao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
+        btnSalvar = new javax.swing.JButton();
+        pnlObrasTermo = new javax.swing.JPanel();
+        lblObras = new javax.swing.JLabel();
+        lblObraTitulo = new javax.swing.JLabel();
+        lblObraAnoLancamento = new javax.swing.JLabel();
+        txtObraTitulo = new javax.swing.JTextField();
+        txtObraAnoLancamento = new javax.swing.JTextField();
+        rdbLivro = new javax.swing.JRadioButton();
+        rdbFilme = new javax.swing.JRadioButton();
+        lblCategoria = new javax.swing.JLabel();
+        rdbSerie = new javax.swing.JRadioButton();
+        rdbOutro = new javax.swing.JRadioButton();
+        rdbJogo = new javax.swing.JRadioButton();
+        btnSalvarObras = new javax.swing.JButton();
+        pnlObrasAdicionadas = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstObrasAdicionadas = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,6 +80,13 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlAdicionarTermoLayout = new javax.swing.GroupLayout(pnlAdicionarTermo);
         pnlAdicionarTermo.setLayout(pnlAdicionarTermoLayout);
         pnlAdicionarTermoLayout.setHorizontalGroup(
@@ -65,8 +99,12 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTermo)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                 .addGap(23, 23, 23))
+            .addGroup(pnlAdicionarTermoLayout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(btnSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAdicionarTermoLayout.setVerticalGroup(
             pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +117,161 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
                 .addGroup(pnlAdicionarTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescricao)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(btnSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlObrasTermo.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar obras"));
+
+        lblObras.setText("As obras serão vinculadas ao termo ao lado!");
+
+        lblObraTitulo.setText("Título:");
+
+        lblObraAnoLancamento.setText("Ano lançamento:");
+
+        txtObraTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObraTituloActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbLivro);
+        rdbLivro.setText("Livro");
+        rdbLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbLivroActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbFilme);
+        rdbFilme.setText("Filme");
+        rdbFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbFilmeActionPerformed(evt);
+            }
+        });
+
+        lblCategoria.setText("Categoria:");
+
+        btgCategoria.add(rdbSerie);
+        rdbSerie.setText("Serie");
+        rdbSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSerieActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbOutro);
+        rdbOutro.setText("Outro");
+        rdbOutro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbOutroActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbJogo);
+        rdbJogo.setText("Jogo");
+        rdbJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbJogoActionPerformed(evt);
+            }
+        });
+
+        btnSalvarObras.setText("Salvar Obras");
+        btnSalvarObras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarObrasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlObrasTermoLayout = new javax.swing.GroupLayout(pnlObrasTermo);
+        pnlObrasTermo.setLayout(pnlObrasTermoLayout);
+        pnlObrasTermoLayout.setHorizontalGroup(
+            pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addComponent(lblObras)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblObraTitulo)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtObraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(lblObraAnoLancamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtObraAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6))
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCategoria)
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(rdbFilme)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdbSerie)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdbLivro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdbJogo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdbOutro)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(btnSalvarObras)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlObrasTermoLayout.setVerticalGroup(
+            pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblObras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblObraTitulo)
+                    .addComponent(txtObraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtObraAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblObraAnoLancamento))
+                .addGap(18, 18, 18)
+                .addComponent(lblCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbFilme)
+                    .addComponent(rdbSerie)
+                    .addComponent(rdbLivro)
+                    .addComponent(rdbJogo)
+                    .addComponent(rdbOutro))
+                .addGap(28, 28, 28)
+                .addComponent(btnSalvarObras)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlObrasAdicionadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras adicionadas"));
+
+        jScrollPane2.setViewportView(lstObrasAdicionadas);
+
+        javax.swing.GroupLayout pnlObrasAdicionadasLayout = new javax.swing.GroupLayout(pnlObrasAdicionadas);
+        pnlObrasAdicionadas.setLayout(pnlObrasAdicionadasLayout);
+        pnlObrasAdicionadasLayout.setHorizontalGroup(
+            pnlObrasAdicionadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasAdicionadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        pnlObrasAdicionadasLayout.setVerticalGroup(
+            pnlObrasAdicionadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasAdicionadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,16 +279,23 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addGap(0, 0, 0)
+                .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlObrasAdicionadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlObrasTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlAdicionarTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addComponent(pnlObrasTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlObrasAdicionadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -105,6 +304,58 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     private void txtTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTermoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTermoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        var obras = new ArrayList<Obra>();
+        glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), obras);
+        txtTermo.setText("");
+        txtDescricao.setText("");
+        clearObras();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void clearObras() {
+        this.tempObras.clear();
+        txtObraTitulo.setText("");
+        txtObraAnoLancamento.setText("");
+    }
+    
+    private void txtObraTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObraTituloActionPerformed
+        
+    }//GEN-LAST:event_txtObraTituloActionPerformed
+    
+    private void rdbLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbLivroActionPerformed
+
+    private void rdbFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbFilmeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbFilmeActionPerformed
+
+    private void rdbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbSerieActionPerformed
+
+    private void rdbOutroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbOutroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbOutroActionPerformed
+
+    private void rdbJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbJogoActionPerformed
+
+    private void btnSalvarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarObrasActionPerformed
+        String categoria = btgCategoria.getSelection().getActionCommand();  //esta lancando uma exception aqui
+        EnumCategoria eCategoria = EnumCategoria.valueOf(categoria);
+        var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
+        tempObras.add(obra);
+        
+        DefaultListModel model = new DefaultListModel();
+        model.addElement(obra.getTitulo());
+        
+        lstObrasAdicionadas.setModel(model);
+        
+        clearObras();
+    }//GEN-LAST:event_btnSalvarObrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,11 +400,29 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgCategoria;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarObras;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblObraAnoLancamento;
+    private javax.swing.JLabel lblObraTitulo;
+    private javax.swing.JLabel lblObras;
+    private javax.swing.JList<String> lstObrasAdicionadas;
     private javax.swing.JPanel pnlAdicionarTermo;
+    private javax.swing.JPanel pnlObrasAdicionadas;
+    private javax.swing.JPanel pnlObrasTermo;
+    private javax.swing.JRadioButton rdbFilme;
+    private javax.swing.JRadioButton rdbJogo;
+    private javax.swing.JRadioButton rdbLivro;
+    private javax.swing.JRadioButton rdbOutro;
+    private javax.swing.JRadioButton rdbSerie;
     private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtObraAnoLancamento;
+    private javax.swing.JTextField txtObraTitulo;
     private javax.swing.JTextField txtTermo;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ public class Obra {
     private int anoLancamento;
     private EnumCategoria categoria;
 
-    protected Obra(String titulo, int anoLancamento, EnumCategoria categoria) {
+    public Obra(String titulo, int anoLancamento, EnumCategoria categoria) {
         this.titulo = titulo;
         this.anoLancamento = anoLancamento;
         this.categoria = categoria;
