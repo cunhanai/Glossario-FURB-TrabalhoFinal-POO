@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 public class Manipulador {
 
-    public void copiarDados(String base, String envio) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public void inicioH(String base, String envio) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         if (base == null || base.isBlank()
                 || envio == null || envio.isBlank()) {
             throw new IllegalArgumentException("base ou envio invalidos");
