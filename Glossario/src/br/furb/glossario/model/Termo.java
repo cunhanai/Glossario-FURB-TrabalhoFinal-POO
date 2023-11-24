@@ -20,6 +20,12 @@ public class Termo {
         this.nome = nome;
         this.descricao = descricao;
     }
+    
+    protected Termo(String nome, String descricao, ArrayList<Obra> obras) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.obras = obras;
+    }
 
 //------------------------------------------------------------------------------
     public void setNome(String nome) {
