@@ -44,7 +44,6 @@ public class Manipulador {
 
         File fileEnvio = pathEnvio.toFile();
 
-        // Faz a copia do conteudo
         try (PrintWriter impressora = new PrintWriter(fileEnvio, "UTF-8"); Scanner scanner = new Scanner(baseDados, "UTF-8")) {
             while (scanner.hasNext()) {
                 impressora.println(scanner.nextLine());
