@@ -12,9 +12,9 @@ import java.util.ArrayList;
  */
 public class Personagem extends Termo {
     
-    private ArrayList<String> caracteristica = new ArrayList<>();
+    private String caracteristica;
+    private String feitos;
     private ArrayList<String> atores = new ArrayList<>();
-    private ArrayList<String> feitos = new ArrayList<>();
     
     protected Personagem(String nome, String descricao) {
         super(nome, descricao);
@@ -24,7 +24,7 @@ public class Personagem extends Termo {
         if (entrada.isBlank()){
             throw new IllegalArgumentException("Entrada invalida.");
         }
-        caracteristica.add(entrada);
+        caracteristica = entrada;
     }
     
     public void addAtores(String entrada) {
@@ -38,10 +38,10 @@ public class Personagem extends Termo {
         if (entrada.isBlank()){
             throw new IllegalArgumentException("Entrada invalida.");
         }
-        feitos.add(entrada);
+        feitos = entrada;
     }
     
-    public ArrayList<String> getCaracteristica() {
+    public String getCaracteristica() {
         return caracteristica;
     }
     
@@ -49,7 +49,7 @@ public class Personagem extends Termo {
         return atores;
     }
     
-    public ArrayList<String> getFeitos (){
+    public String getFeitos (){
         return feitos;
     }
 }
