@@ -16,8 +16,11 @@ public class Personagem extends Termo {
     private String feitos;
     private ArrayList<String> atores = new ArrayList<>();
     
-    protected Personagem(String nome, String descricao) {
+    protected Personagem(String nome, String descricao, String caracteristica, String feitos, ArrayList<String> atores) {
         super(nome, descricao);
+        this.caracteristica = caracteristica;
+        this.feitos = feitos;
+        this.atores = atores;
     }
 //------------------------------------------------------------------------------
     public void addCaracteristica(String entrada) {
