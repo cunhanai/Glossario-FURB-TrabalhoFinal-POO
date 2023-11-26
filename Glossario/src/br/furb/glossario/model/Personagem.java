@@ -4,6 +4,7 @@
  */
 package br.furb.glossario.model;
 
+import br.furb.glossario.model.utils.StringUtils;
 import java.util.ArrayList;
 
 /**
@@ -58,6 +59,7 @@ public class Personagem extends Termo {
     
     @Override
     public String toString() {
-        return String.join(getDelimitador(), caracteristica, feitos) + ";a;" + String.join(";a;", atores);  
+        return String.join(StringUtils.DELIMITER_ELEMENT, caracteristica, feitos) + 
+                StringUtils.DELIMITER_ATOR + String.join(StringUtils.DELIMITER_ATOR, atores);  
     }
 }

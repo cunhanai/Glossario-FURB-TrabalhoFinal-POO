@@ -5,6 +5,7 @@
 package br.furb.glossario.model;
 
 import java.util.ArrayList;
+import br.furb.glossario.model.utils.StringUtils;
 
 /**
  *
@@ -58,18 +59,14 @@ public class Termo {
     protected String getObrasString() {
         var obrasStr = "";
         for (Obra obra : obras) {
-            obrasStr += ";o;" + obra.toString();
+            obrasStr += StringUtils.DELIMITER_OBRA + obra.toString();
         }
         
         return obrasStr;
     }
     
-    protected String getDelimitador() {
-        return ";/;";
-    }
-    
     @Override
     public String toString() {
-        return String.join(getDelimitador(), nome, descricao);
+        return String.join(StringUtils.DELIMITER_ELEMENT, nome, descricao);
     }
 }

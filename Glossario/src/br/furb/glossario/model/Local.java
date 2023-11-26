@@ -4,6 +4,7 @@
  */
 package br.furb.glossario.model;
 
+import br.furb.glossario.model.utils.StringUtils;
 import java.util.ArrayList;
 
 /**
@@ -34,6 +35,6 @@ public class Local extends Termo {
     
     @Override
     public String toString() {
-        return String.join(getDelimitador(), super.toString(), historia);
+        return String.join(StringUtils.DELIMITER_ELEMENT, super.toString(), historia);
     }
 }
