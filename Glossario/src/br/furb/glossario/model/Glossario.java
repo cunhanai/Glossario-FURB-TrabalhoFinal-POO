@@ -4,6 +4,7 @@
  */
 package br.furb.glossario.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,24 +14,39 @@ import java.util.ArrayList;
 public class Glossario {
 
     private ArrayList<Termo> termos = new ArrayList<>();
+    private final String caminho = "C:\\Users\\anaj2\\OneDrive\\Documentos\\FURB\\2 semestre\\POO\\Glossario-FURB-TrabalhoFinal-POO\\Glossario\\src\\br\\furb\\glossario\\data\\glossario.txt";
 
     public Glossario() {
 
     }
 
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras) {
-        Termo termo = new Termo(nome, descricao);
+    public boolean incluirTermo(String nome, String descricao, ArrayList<Obra> obras) {
+        Termo termo = new Termo(nome, descricao, obras);
         termos.add(termo);
+        return salvarTermo(termo);
     }
 
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) {
-        Personagem personagem = new Personagem(nome, descricao, caracteristica, feitos, atores);
+    public boolean incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) {
+        Personagem personagem = new Personagem(nome, descricao, obras, caracteristica, feitos, atores);
         termos.add(personagem);
+        return salvarTermo(personagem);
     }
 
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String historia) {
-        Local local = new Local(nome, descricao, historia);
+    public boolean incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String historia) {
+        Local local = new Local(nome, descricao, obras, historia);
         termos.add(local);
+        return salvarTermo(local);
+    }
+    
+    private boolean salvarTermo(Termo termo) {
+        try {
+            IO.saveData(termo.toString() + termo.getObrasString(), caminho);
+            return true;
+        }
+        catch (IOException e) {
+            System.out.println("Ocorreu um erro no salvamento do arquivo" + e.getMessage());
+            return false;
+        }
     }
 
     /*public void incluirObra(String titulo, int anoLancamento, EnumCategoria categoria) {

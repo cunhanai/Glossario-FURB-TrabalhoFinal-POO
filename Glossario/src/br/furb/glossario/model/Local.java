@@ -4,6 +4,8 @@
  */
 package br.furb.glossario.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author anaj2
@@ -12,8 +14,8 @@ public class Local extends Termo {
 
     private String historia;
 
-    protected Local(String nome, String descricao, String historia) {
-        super(nome, descricao);
+    protected Local(String nome, String descricao, ArrayList<Obra> obras, String historia) {
+        super(nome, descricao, obras);
         this.historia = historia;
     }
 
@@ -28,5 +30,10 @@ public class Local extends Termo {
 
     public String getHistoria() {
         return historia;
+    }
+    
+    @Override
+    public String toString() {
+        return String.join(getDelimitador(), super.toString(), historia);
     }
 }

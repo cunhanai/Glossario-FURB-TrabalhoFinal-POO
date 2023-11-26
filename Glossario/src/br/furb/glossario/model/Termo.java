@@ -15,11 +15,6 @@ public class Termo {
     private String nome;
     private String descricao;
     private ArrayList<Obra> obras = new ArrayList<>();
-
-    protected Termo(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
-    }
     
     protected Termo(String nome, String descricao, ArrayList<Obra> obras) {
         this.nome = nome;
@@ -58,5 +53,23 @@ public class Termo {
     
     public ArrayList<Obra> getObras() {
         return obras;
+    }
+    
+    protected String getObrasString() {
+        var obrasStr = "";
+        for (Obra obra : obras) {
+            obrasStr += ";o;" + obra.toString();
+        }
+        
+        return obrasStr;
+    }
+    
+    protected String getDelimitador() {
+        return ";/;";
+    }
+    
+    @Override
+    public String toString() {
+        return String.join(getDelimitador(), nome, descricao);
     }
 }

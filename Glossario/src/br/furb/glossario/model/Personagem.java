@@ -16,8 +16,8 @@ public class Personagem extends Termo {
     private String feitos;
     private ArrayList<String> atores = new ArrayList<>();
     
-    protected Personagem(String nome, String descricao, String caracteristica, String feitos, ArrayList<String> atores) {
-        super(nome, descricao);
+    protected Personagem(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) {
+        super(nome, descricao, obras);
         this.caracteristica = caracteristica;
         this.feitos = feitos;
         this.atores = atores;
@@ -54,5 +54,10 @@ public class Personagem extends Termo {
     
     public String getFeitos (){
         return feitos;
+    }
+    
+    @Override
+    public String toString() {
+        return String.join(getDelimitador(), caracteristica, feitos) + ";a;" + String.join(";a;", atores);  
     }
 }

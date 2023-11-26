@@ -25,12 +25,12 @@ public class IO {
     private IO() {
     }
 
-    public static void saveData(String data, String envio) throws IOException {
-        if (envio == null || envio.isBlank()) {
+    public static void saveData(String data, String path) throws IOException {
+        if (path == null || path.isBlank()) {
             throw new IllegalArgumentException("envio null/vazio");
         }
 
-        Path pathEnvio = Paths.get(envio);
+        Path pathEnvio = Paths.get(path);
         if (!Files.exists(pathEnvio)) {
             if (!Files.exists(pathEnvio.getParent())) {
                 Files.createDirectories(pathEnvio.getParent());
@@ -47,17 +47,17 @@ public class IO {
         }
     }
 
-    public static String readBufferedReader(String base) throws IOException {
-        if (base == null || base.isBlank()) {
-            throw new IllegalArgumentException("base null/vazio");
+    public static String readBufferedReader(String path) throws IOException {
+        if (path == null || path.isBlank()) {
+            throw new IllegalArgumentException("base null/vazia");
         }
 
-        File fileBase = new File(base);
+        File fileBase = new File(path);
 
         if (!fileBase.exists()) {
             return null;
         } else if (!fileBase.isFile()) {
-            throw new IllegalArgumentException("base nn existe ou nn eh arquirvo");
+            throw new IllegalArgumentException("base não existe ou não é arquivo");
         }
         ArrayList<String> lines = new ArrayList<>();
         String line;
@@ -71,7 +71,7 @@ public class IO {
 
     public static String readScannerData(String base) throws IOException {
         if (base == null || base.isBlank()) {
-            throw new IllegalArgumentException("base null/vazio");
+            throw new IllegalArgumentException("base null/vazia");
         }
 
         File fileBase = new File(base);
@@ -79,7 +79,7 @@ public class IO {
         if (!fileBase.exists()) {
             return null;
         } else if (!fileBase.isFile()) {
-            throw new IllegalArgumentException("base nn existe ou nn eh arquirvo");
+            throw new IllegalArgumentException("base não existe ou não é arquivo");
         }
         ArrayList<String> lines = new ArrayList<>();
         try (Scanner scanner = new Scanner(fileBase, "UTF-8")) {

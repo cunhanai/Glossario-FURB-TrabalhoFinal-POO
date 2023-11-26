@@ -52,4 +52,13 @@ public class Obra {
     public EnumCategoria getCategoria() {
         return categoria;
     }
+    
+    protected String getDelimitador() {
+        return ";od;";
+    }
+    
+    @Override
+    public String toString() {
+        return titulo + getDelimitador() + anoLancamento + getDelimitador() + categoria;
+    }
 }

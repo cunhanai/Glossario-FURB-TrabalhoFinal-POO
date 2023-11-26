@@ -26,24 +26,19 @@ public class AppUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu3 = new javax.swing.JMenu();
-        btnAddTermo = new javax.swing.JButton();
         pnlTermos = new javax.swing.JPanel();
         txtPesquisaTermo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTermos = new javax.swing.JList<>();
-
-        jMenu3.setText("jMenu3");
+        menuBar = new javax.swing.JMenuBar();
+        menuAdicionar = new javax.swing.JMenu();
+        mniNovoTermo = new javax.swing.JMenuItem();
+        mniNovoPersonagem = new javax.swing.JMenuItem();
+        nmiNovoLocal = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnAddTermo.setText("Novo Termo");
-        btnAddTermo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddTermoActionPerformed(evt);
-            }
-        });
 
         pnlTermos.setBorder(javax.swing.BorderFactory.createTitledBorder("Termos"));
 
@@ -93,18 +88,49 @@ public class AppUI extends javax.swing.JFrame {
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
+        menuAdicionar.setText("Adicionar");
+
+        mniNovoTermo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniNovoTermo.setText("Novo Termo");
+        mniNovoTermo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNovoTermoActionPerformed(evt);
+            }
+        });
+        menuAdicionar.add(mniNovoTermo);
+
+        mniNovoPersonagem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniNovoPersonagem.setText("Novo Persoangem");
+        mniNovoPersonagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNovoPersonagemActionPerformed(evt);
+            }
+        });
+        menuAdicionar.add(mniNovoPersonagem);
+
+        nmiNovoLocal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        nmiNovoLocal.setText("Novo Local");
+        nmiNovoLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nmiNovoLocalActionPerformed(evt);
+            }
+        });
+        menuAdicionar.add(nmiNovoLocal);
+
+        menuBar.add(menuAdicionar);
+
+        jMenu2.setText("Edit");
+        menuBar.add(jMenu2);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnAddTermo)))
+                .addContainerGap()
+                .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,18 +138,11 @@ public class AppUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(btnAddTermo)
-                .addGap(26, 26, 26))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTermoActionPerformed
-        AppAddTermo dialog = new AppAddTermo(this, true);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddTermoActionPerformed
 
     private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
         // TODO add your handling code here:
@@ -132,6 +151,21 @@ public class AppUI extends javax.swing.JFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void nmiNovoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nmiNovoLocalActionPerformed
+        AppAddTermoLocal dialog = new AppAddTermoLocal(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_nmiNovoLocalActionPerformed
+
+    private void mniNovoTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNovoTermoActionPerformed
+        AppAddTermoBasico dialog = new AppAddTermoBasico(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_mniNovoTermoActionPerformed
+
+    private void mniNovoPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNovoPersonagemActionPerformed
+        AppAddTermoPersonagem dialog = new AppAddTermoPersonagem(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_mniNovoPersonagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,11 +203,15 @@ public class AppUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddTermo;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstTermos;
+    private javax.swing.JMenu menuAdicionar;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem mniNovoPersonagem;
+    private javax.swing.JMenuItem mniNovoTermo;
+    private javax.swing.JMenuItem nmiNovoLocal;
     private javax.swing.JPanel pnlTermos;
     private javax.swing.JTextField txtPesquisaTermo;
     // End of variables declaration//GEN-END:variables
