@@ -57,7 +57,7 @@ public class IO {
         if (!fileBase.exists()) {
             return null;
         } else if (!fileBase.isFile()) {
-            throw new IllegalArgumentException("base não existe ou não é arquivo");
+            throw new IllegalArgumentException("base nn existe ou nn eh arquivo");
         }
         ArrayList<String> lines = new ArrayList<>();
         String line;
@@ -79,7 +79,7 @@ public class IO {
         if (!fileBase.exists()) {
             return null;
         } else if (!fileBase.isFile()) {
-            throw new IllegalArgumentException("base não existe ou não é arquivo");
+            throw new IllegalArgumentException("base nn existe ou nn eh arquivo");
         }
         ArrayList<String> lines = new ArrayList<>();
         try (Scanner scanner = new Scanner(fileBase, "UTF-8")) {
