@@ -4,12 +4,16 @@
  */
 package br.furb.glossario.view;
 
+import br.furb.glossario.model.Glossario;
+
 /**
  *
  * @author anaj2
  */
 public class AppUI extends javax.swing.JFrame {
 
+    private Glossario glossario = new Glossario();
+    
     /**
      * Creates new form AppUI
      */
@@ -29,14 +33,11 @@ public class AppUI extends javax.swing.JFrame {
         pnlTermos = new javax.swing.JPanel();
         txtPesquisaTermo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         menuAdicionar = new javax.swing.JMenu();
         mniNovoTermo = new javax.swing.JMenuItem();
         mniNovoPersonagem = new javax.swing.JMenuItem();
         nmiNovoLocal = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,42 +56,16 @@ public class AppUI extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Termo", "Descrição", "Tipo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
-
         javax.swing.GroupLayout pnlTermosLayout = new javax.swing.GroupLayout(pnlTermos);
         pnlTermos.setLayout(pnlTermosLayout);
         pnlTermosLayout.setHorizontalGroup(
             pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTermosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTermosLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlTermosLayout.createSequentialGroup()
-                        .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPesquisar)))
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesquisar)
+                .addContainerGap(580, Short.MAX_VALUE))
         );
         pnlTermosLayout.setVerticalGroup(
             pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,9 +74,7 @@ public class AppUI extends javax.swing.JFrame {
                 .addGroup(pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(443, Short.MAX_VALUE))
         );
 
         menuAdicionar.setText("Adicionar");
@@ -135,9 +108,6 @@ public class AppUI extends javax.swing.JFrame {
 
         menuBar.add(menuAdicionar);
 
-        jMenu2.setText("Edit");
-        menuBar.add(jMenu2);
-
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,6 +130,11 @@ public class AppUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listarTermos() {
+        
+        
+    }
+    
     private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisaTermoActionPerformed
@@ -220,9 +195,6 @@ public class AppUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuAdicionar;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem mniNovoPersonagem;

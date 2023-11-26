@@ -4,7 +4,6 @@
  */
 package br.furb.glossario.model;
 
-import br.furb.glossario.model.utils.StringUtils;
 import java.io.Serializable;
 
 /**
@@ -54,10 +53,5 @@ public class Obra implements Serializable {
 
     public EnumCategoria getCategoria() {
         return categoria;
-    }
-    
-    @Override
-    public String toString() {
-        return titulo + StringUtils.DELIMITER_ELEMENT + anoLancamento + StringUtils.DELIMITER_ELEMENT + categoria;
     }
 }

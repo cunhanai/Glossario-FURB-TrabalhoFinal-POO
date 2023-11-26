@@ -4,7 +4,6 @@
  */
 package br.furb.glossario.model;
 
-import br.furb.glossario.model.utils.StringUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -56,11 +55,5 @@ public class Personagem extends Termo implements Serializable {
     
     public String getFeitos (){
         return feitos;
-    }
-    
-    @Override
-    public String toString() {
-        return String.join(StringUtils.DELIMITER_ELEMENT, super.toString(), caracteristica, feitos) + 
-                StringUtils.DELIMITER_ATOR + String.join(StringUtils.DELIMITER_ATOR, atores);  
     }
 }
