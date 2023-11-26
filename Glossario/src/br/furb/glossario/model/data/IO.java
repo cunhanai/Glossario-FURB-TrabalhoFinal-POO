@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,11 +22,13 @@ import java.util.Scanner;
  */
 public class IO {
 
+    private static final String caminho = Path.of("").toAbsolutePath().toString() + "\\src\\br\\furb\\glossario\\model\\data\\glossario.dat";
+
     private IO() {
     }
 
     public static void saveData(Glossario termos) throws IOException {
-        File dataBase = new File("ect\\dataBase.dat");
+        File dataBase = new File(caminho);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dataBase))) {
             oos.writeObject(termos);
             oos.flush();
