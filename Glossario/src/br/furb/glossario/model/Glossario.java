@@ -4,6 +4,7 @@
  */
 package br.furb.glossario.model;
 
+import br.furb.glossario.model.data.IO;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class Glossario {
 
     private ArrayList<Termo> termos = new ArrayList<>();
-    private final String caminho = "C:\\Users\\anaj2\\OneDrive\\Documentos\\FURB\\2 semestre\\POO\\Glossario-FURB-TrabalhoFinal-POO\\Glossario\\src\\br\\furb\\glossario\\data\\glossario.txt";
+    private final String caminho = "C:\\Users\\anaj2\\OneDrive\\Documentos\\FURB\\2 semestre\\POO\\Glossario-FURB-TrabalhoFinal-POO\\Glossario\\src\\br\\furb\\glossario\\model\\data\\glossario.txt";
 
     public Glossario() {
 
