@@ -4,15 +4,14 @@
  */
 package br.furb.glossario.model.data;
 
+import br.furb.glossario.model.Glossario;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.ObjectOutputStream;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,25 +24,13 @@ public class IO {
     private IO() {
     }
 
-    public static void saveData(String data, String path) throws IOException {
-        if (path == null || path.isBlank()) {
-            throw new IllegalArgumentException("envio null/vazio");
-        }
-
-        Path pathEnvio = Paths.get(path);
-        if (!Files.exists(pathEnvio)) {
-            if (!Files.exists(pathEnvio.getParent())) {
-                Files.createDirectories(pathEnvio.getParent());
-            }
-
-            Files.createFile(pathEnvio);
-        }
-
-        File fileEnvio = pathEnvio.toFile();
-
-        try (PrintWriter impressora = new PrintWriter(fileEnvio, "UTF-8")) {
-            impressora.print(data);
-
+    public static void saveData(Glossario termos) throws IOException {
+        File dataBase = new File("ect\\dataBase.dat");
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dataBase))) {
+            oos.writeObject(termos);
+            oos.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
