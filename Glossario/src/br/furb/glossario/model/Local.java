@@ -4,14 +4,14 @@
  */
 package br.furb.glossario.model;
 
-import br.furb.glossario.model.utils.StringUtils;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author anaj2
  */
-public class Local extends Termo {
+public class Local extends Termo implements Serializable {
 
     private String historia;
 
@@ -31,10 +31,5 @@ public class Local extends Termo {
 
     public String getHistoria() {
         return historia;
-    }
-    
-    @Override
-    public String toString() {
-        return String.join(StringUtils.DELIMITER_ELEMENT, super.toString(), historia);
     }
 }

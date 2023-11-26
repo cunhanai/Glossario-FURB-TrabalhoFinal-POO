@@ -5,13 +5,13 @@
 package br.furb.glossario.model;
 
 import java.util.ArrayList;
-import br.furb.glossario.model.utils.StringUtils;
+import java.io.Serializable;
 
 /**
  *
  * @author anaj2
  */
-public class Termo {
+public class Termo implements Serializable {
 
     private String nome;
     private String descricao;
@@ -56,17 +56,11 @@ public class Termo {
         return obras;
     }
     
-    protected String getObrasString() {
-        var obrasStr = "";
-        for (Obra obra : obras) {
-            obrasStr += StringUtils.DELIMITER_OBRA + obra.toString();
-        }
-        
-        return obrasStr;
-    }
-    
-    @Override
-    public String toString() {
-        return String.join(StringUtils.DELIMITER_ELEMENT, nome, descricao);
+    public String getTipoTermoString() {
+        if (this instanceof Personagem)
+            return "Personagem";
+        else if (this instanceof Local)
+            return "Local";
+        return "Termo";
     }
 }

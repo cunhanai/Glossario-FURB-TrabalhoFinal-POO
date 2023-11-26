@@ -6,19 +6,20 @@ package br.furb.glossario.model;
 
 import br.furb.glossario.model.data.IO;
 import java.io.IOException;
+import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 /**
  *
  * @author anaj2
  */
-public class Glossario {
+public class Glossario implements Serializable {
 
     private ArrayList<Termo> termos = new ArrayList<>();
-    private final String caminho = "C:\\Users\\anaj2\\OneDrive\\Documentos\\FURB\\2 semestre\\POO\\Glossario-FURB-TrabalhoFinal-POO\\Glossario\\src\\br\\furb\\glossario\\model\\data\\glossario.txt";
+    private final String caminho = Path.of("").toAbsolutePath().toString() + "\\src\\br\\furb\\glossario\\model\\data\\glossario.dat";
 
     public Glossario() {
-
     }
 
     public boolean incluirTermo(String nome, String descricao, ArrayList<Obra> obras) {
@@ -39,13 +40,9 @@ public class Glossario {
         return salvarTermo(local);
     }
     
-    public ArrayList<Termo> getTermos() {
-        return termos;
-    }
-    
     private boolean salvarTermo(Termo termo) {
         try {
-            IO.saveData(termo.toString() + termo.getObrasString(), caminho);
+            IO.saveData(termo.toString(), caminho);
             return true;
         }
         catch (IOException e) {
@@ -53,9 +50,4 @@ public class Glossario {
             return false;
         }
     }
-
-    /*public void incluirObra(String titulo, int anoLancamento, EnumCategoria categoria) {
-        Obra obra = new Obra(titulo, anoLancamento, categoria);
-        .add(obra);
-    }*/
 }
