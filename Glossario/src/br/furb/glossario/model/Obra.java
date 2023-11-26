@@ -4,11 +4,14 @@
  */
 package br.furb.glossario.model;
 
+import br.furb.glossario.model.utils.StringUtils;
+import java.io.Serializable;
+
 /**
  *
  * @author anaj2
  */
-public class Obra {
+public class Obra implements Serializable {
 
     private String titulo;
     private int anoLancamento;
@@ -53,12 +56,8 @@ public class Obra {
         return categoria;
     }
     
-    protected String getDelimitador() {
-        return ";od;";
-    }
-    
     @Override
     public String toString() {
-        return titulo + getDelimitador() + anoLancamento + getDelimitador() + categoria;
+        return titulo + StringUtils.DELIMITER_ELEMENT + anoLancamento + StringUtils.DELIMITER_ELEMENT + categoria;
     }
 }

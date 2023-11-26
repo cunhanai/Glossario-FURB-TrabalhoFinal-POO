@@ -13,5 +13,5 @@ public final class StringUtils {
     public static final String DELIMITER_ELEMENT = ";/;";
     public static final String DELITER_TERMO = "/n";
     public static final String DELIMITER_OBRA = ";o;";
-    public static final String DELIMITER_ATOR = "a";
+    public static final String DELIMITER_ATOR = ";a;";
 }

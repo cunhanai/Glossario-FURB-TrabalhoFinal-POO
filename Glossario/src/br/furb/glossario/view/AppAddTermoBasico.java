@@ -171,7 +171,7 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
             }
         });
 
-        btnSalvarObras.setText("Salvar Obras");
+        btnSalvarObras.setText("Adicionar obra");
         btnSalvarObras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarObrasActionPerformed(evt);
@@ -185,6 +185,20 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
             .addGroup(pnlObrasTermoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addComponent(lblObras)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(lblObraTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtObraTitulo))
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(lblObraAnoLancamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtObraAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6))
                     .addGroup(pnlObrasTermoLayout.createSequentialGroup()
                         .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCategoria)
@@ -201,20 +215,7 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
                                         .addComponent(rdbJogo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(rdbOutro)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
-                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblObras)
-                            .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(pnlObrasTermoLayout.createSequentialGroup()
-                                    .addComponent(lblObraTitulo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtObraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlObrasTermoLayout.createSequentialGroup()
-                                    .addComponent(lblObraAnoLancamento)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtObraAnoLancamento))))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlObrasTermoLayout.setVerticalGroup(
             pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +244,7 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlObrasAdicionadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras vinculadas"));
+        pnlObrasAdicionadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras adicionadas"));
 
         tblObras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

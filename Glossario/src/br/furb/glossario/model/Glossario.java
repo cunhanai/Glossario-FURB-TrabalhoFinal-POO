@@ -39,6 +39,10 @@ public class Glossario {
         return salvarTermo(local);
     }
     
+    public ArrayList<Termo> getTermos() {
+        return termos;
+    }
+    
     private boolean salvarTermo(Termo termo) {
         try {
             IO.saveData(termo.toString() + termo.getObrasString(), caminho);

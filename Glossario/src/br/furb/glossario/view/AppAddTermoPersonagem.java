@@ -4,14 +4,25 @@
  */
 package br.furb.glossario.view;
 
+import br.furb.glossario.model.EnumCategoria;
+import br.furb.glossario.model.Glossario;
+import br.furb.glossario.model.Obra;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author anaj2
  */
 public class AppAddTermoPersonagem extends javax.swing.JDialog {
 
+    private Glossario glossario = new Glossario();
+    private ArrayList<Obra> tempObras = new ArrayList<Obra>();
+    private ArrayList<String> tempAtor = new ArrayList<String>();
+    
     /**
-     * Creates new form AppAddTermoPersonagem
+     * Creates new form AppAddTermoBasico
      */
     public AppAddTermoPersonagem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,119 +38,437 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextNomePersonagem = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        btgCategoria = new javax.swing.ButtonGroup();
+        pnlAdicionarLocal = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        txtTermo = new javax.swing.JTextField();
+        lblDescricao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtDescricao = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtFeitos = new javax.swing.JTextArea();
+        lblCaracteristicas = new javax.swing.JLabel();
+        lblFeitos = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtCaracteristicas = new javax.swing.JTextArea();
+        lblAtor = new javax.swing.JLabel();
+        txtAtor = new javax.swing.JTextField();
+        btnAdicionarAtor = new javax.swing.JButton();
+        pnlObrasTermo = new javax.swing.JPanel();
+        lblObras = new javax.swing.JLabel();
+        lblObraTitulo = new javax.swing.JLabel();
+        lblObraAnoLancamento = new javax.swing.JLabel();
+        txtObraTitulo = new javax.swing.JTextField();
+        txtObraAnoLancamento = new javax.swing.JTextField();
+        rdbLivro = new javax.swing.JRadioButton();
+        rdbFilme = new javax.swing.JRadioButton();
+        lblCategoria = new javax.swing.JLabel();
+        rdbSerie = new javax.swing.JRadioButton();
+        rdbOutro = new javax.swing.JRadioButton();
+        rdbJogo = new javax.swing.JRadioButton();
+        btnSalvarObras = new javax.swing.JButton();
+        pnlObrasAdicionadas = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblObras = new javax.swing.JTable();
+        btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setText("Nome da personagem:");
+        pnlAdicionarLocal.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar Personagem"));
 
-        jLabel2.setText("Descricao:");
+        lblNome.setText("Nome:");
 
-        jLabel3.setText("Obras:");
-
-        jLabel4.setText("Atores(as):");
-
-        jTextNomePersonagem.addActionListener(new java.awt.event.ActionListener() {
+        txtTermo.setToolTipText("");
+        txtTermo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomePersonagemActionPerformed(evt);
+                txtTermoActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Feitos:");
+        lblDescricao.setText("Descrição:");
 
-        jLabel6.setText("[espaco para as obras]");
+        txtDescricao.setColumns(20);
+        txtDescricao.setRows(5);
+        jScrollPane1.setViewportView(txtDescricao);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtFeitos.setColumns(20);
+        txtFeitos.setRows(5);
+        jScrollPane3.setViewportView(txtFeitos);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        lblCaracteristicas.setText("Características:");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        lblFeitos.setText("Feitos:");
+
+        txtCaracteristicas.setColumns(20);
+        txtCaracteristicas.setRows(5);
+        jScrollPane4.setViewportView(txtCaracteristicas);
+
+        lblAtor.setText("Ator:");
+
+        txtAtor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAtorActionPerformed(evt);
+            }
+        });
+
+        btnAdicionarAtor.setText("Adicionar");
+        btnAdicionarAtor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarAtorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlAdicionarLocalLayout = new javax.swing.GroupLayout(pnlAdicionarLocal);
+        pnlAdicionarLocal.setLayout(pnlAdicionarLocalLayout);
+        pnlAdicionarLocalLayout.setHorizontalGroup(
+            pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdicionarLocalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescricao)
+                    .addComponent(lblNome)
+                    .addComponent(lblCaracteristicas)
+                    .addComponent(lblFeitos)
+                    .addComponent(lblAtor))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTermo)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
+                    .addGroup(pnlAdicionarLocalLayout.createSequentialGroup()
+                        .addComponent(txtAtor)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdicionarAtor)))
+                .addGap(23, 23, 23))
+        );
+        pnlAdicionarLocalLayout.setVerticalGroup(
+            pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdicionarLocalLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescricao)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCaracteristicas)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFeitos))
+                .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAdicionarLocalLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlAdicionarLocalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAtor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAtor))
+                        .addGap(67, 67, 67))
+                    .addGroup(pnlAdicionarLocalLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdicionarAtor)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        pnlObrasTermo.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar obras"));
+
+        lblObras.setText("As obras serão vinculadas ao termo ao lado!");
+
+        lblObraTitulo.setText("Título:");
+
+        lblObraAnoLancamento.setText("Ano lançamento:");
+
+        txtObraTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObraTituloActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbLivro);
+        rdbLivro.setText("Livro");
+        rdbLivro.setActionCommand(rdbLivro.getText());
+        rdbLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbLivroActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbFilme);
+        rdbFilme.setText("Filme");
+        rdbFilme.setActionCommand(rdbFilme.getText());
+        rdbFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbFilmeActionPerformed(evt);
+            }
+        });
+
+        lblCategoria.setText("Categoria:");
+
+        btgCategoria.add(rdbSerie);
+        rdbSerie.setText("Serie");
+        rdbSerie.setActionCommand(rdbSerie.getText());
+        rdbSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbSerieActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbOutro);
+        rdbOutro.setText("Outro");
+        rdbOutro.setActionCommand(rdbOutro.getText());
+        rdbOutro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbOutroActionPerformed(evt);
+            }
+        });
+
+        btgCategoria.add(rdbJogo);
+        rdbJogo.setText("Jogo");
+        rdbJogo.setActionCommand(rdbJogo.getText());
+        rdbJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbJogoActionPerformed(evt);
+            }
+        });
+
+        btnSalvarObras.setText("Adicionar obra");
+        btnSalvarObras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarObrasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlObrasTermoLayout = new javax.swing.GroupLayout(pnlObrasTermo);
+        pnlObrasTermo.setLayout(pnlObrasTermoLayout);
+        pnlObrasTermoLayout.setHorizontalGroup(
+            pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addComponent(lblObras)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(lblObraTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtObraTitulo))
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(lblObraAnoLancamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtObraAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6))
+                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                        .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCategoria)
+                            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                .addComponent(rdbFilme)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdbSerie)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSalvarObras)
+                                    .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                                        .addComponent(rdbLivro)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdbJogo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdbOutro)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        pnlObrasTermoLayout.setVerticalGroup(
+            pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasTermoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblObras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblObraTitulo)
+                    .addComponent(txtObraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtObraAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblObraAnoLancamento))
+                .addGap(18, 18, 18)
+                .addComponent(lblCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlObrasTermoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbFilme)
+                    .addComponent(rdbSerie)
+                    .addComponent(rdbLivro)
+                    .addComponent(rdbJogo)
+                    .addComponent(rdbOutro))
+                .addGap(28, 28, 28)
+                .addComponent(btnSalvarObras)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlObrasAdicionadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras adicionadas"));
+
+        tblObras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Título", "Ano Lançamento", "Categoria"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblObras);
+
+        javax.swing.GroupLayout pnlObrasAdicionadasLayout = new javax.swing.GroupLayout(pnlObrasAdicionadas);
+        pnlObrasAdicionadas.setLayout(pnlObrasAdicionadasLayout);
+        pnlObrasAdicionadasLayout.setHorizontalGroup(
+            pnlObrasAdicionadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+        );
+        pnlObrasAdicionadasLayout.setVerticalGroup(
+            pnlObrasAdicionadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObrasAdicionadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(435, 435, 435)
+                .addComponent(btnSalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlAdicionarLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextNomePersonagem)))
-                .addGap(40, 40, 40))
+                    .addComponent(pnlObrasAdicionadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlObrasTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextNomePersonagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel6)))
+                        .addComponent(pnlObrasTermo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
+                        .addComponent(pnlObrasAdicionadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlAdicionarLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addComponent(btnSalvar)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextNomePersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePersonagemActionPerformed
+    private void txtTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTermoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomePersonagemActionPerformed
+    }//GEN-LAST:event_txtTermoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras, txtCaracteristicas.getText(), txtFeitos.getText(), tempAtor);
+        txtTermo.setText("");
+        txtDescricao.setText("");
+        txtCaracteristicas.setText("");
+        txtAtor.setText("");
+        txtFeitos.setText("");
+        clearObra();
+        this.tempObras.clear();     
+        this.tempAtor.clear();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void clearObra() {        txtObraTitulo.setText("");
+        txtObraAnoLancamento.setText("");
+        btgCategoria.clearSelection();
+    }
+    
+    private void txtObraTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObraTituloActionPerformed
+        
+    }//GEN-LAST:event_txtObraTituloActionPerformed
+    
+    private void rdbLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbLivroActionPerformed
+
+    private void rdbFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbFilmeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbFilmeActionPerformed
+
+    private void rdbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbSerieActionPerformed
+
+    private void rdbOutroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbOutroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbOutroActionPerformed
+
+    private void rdbJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbJogoActionPerformed
+
+    private void btnSalvarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarObrasActionPerformed
+        var categoria = btgCategoria.getSelection().getActionCommand();
+        EnumCategoria eCategoria = EnumCategoria.valueOf(categoria.toUpperCase());
+        
+        var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
+        tempObras.add(obra);
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Título");
+        model.addColumn("Ano Lançamento");
+        model.addColumn("Categoria");
+        
+        /*
+        model.addRow();
+        
+        tblObras.getModel().ad
+        
+        DefaultListModel model = new DefaultListModel();
+        model.addElement(obra.getTitulo());
+        
+        lstObrasAdicionadas.setModel(model);
+        */
+        clearObra();
+    }//GEN-LAST:event_btnSalvarObrasActionPerformed
+
+    private void txtAtorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAtorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAtorActionPerformed
+
+    private void btnAdicionarAtorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarAtorActionPerformed
+        tempAtor.add(txtAtor.getText());
+        txtAtor.setText("");
+    }//GEN-LAST:event_btnAdicionarAtorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +496,9 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(AppAddTermoPersonagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -184,18 +516,38 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.ButtonGroup btgCategoria;
+    private javax.swing.JButton btnAdicionarAtor;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnSalvarObras;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextNomePersonagem;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblAtor;
+    private javax.swing.JLabel lblCaracteristicas;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblFeitos;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblObraAnoLancamento;
+    private javax.swing.JLabel lblObraTitulo;
+    private javax.swing.JLabel lblObras;
+    private javax.swing.JPanel pnlAdicionarLocal;
+    private javax.swing.JPanel pnlObrasAdicionadas;
+    private javax.swing.JPanel pnlObrasTermo;
+    private javax.swing.JRadioButton rdbFilme;
+    private javax.swing.JRadioButton rdbJogo;
+    private javax.swing.JRadioButton rdbLivro;
+    private javax.swing.JRadioButton rdbOutro;
+    private javax.swing.JRadioButton rdbSerie;
+    private javax.swing.JTable tblObras;
+    private javax.swing.JTextField txtAtor;
+    private javax.swing.JTextArea txtCaracteristicas;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextArea txtFeitos;
+    private javax.swing.JTextField txtObraAnoLancamento;
+    private javax.swing.JTextField txtObraTitulo;
+    private javax.swing.JTextField txtTermo;
     // End of variables declaration//GEN-END:variables
 }
