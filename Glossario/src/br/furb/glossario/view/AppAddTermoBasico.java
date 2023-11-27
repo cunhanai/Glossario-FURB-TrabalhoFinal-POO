@@ -10,7 +10,6 @@ import br.furb.glossario.model.Obra;
 import br.furb.glossario.model.data.IO;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -348,6 +347,10 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
             clearObra();
             this.tempObras.clear();
             IO.saveData(glossario);
+        }
+        catch (IllegalArgumentException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, rootPaneCheckingEnabled, e.getMessage());
+            error.setVisible(true);
         }
         catch (IOException e) {
             AppErrorPopup error = new AppErrorPopup(parent, rootPaneCheckingEnabled, e.getMessage());

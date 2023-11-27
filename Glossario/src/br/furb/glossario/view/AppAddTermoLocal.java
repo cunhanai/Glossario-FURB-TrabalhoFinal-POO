@@ -10,7 +10,6 @@ import br.furb.glossario.model.Obra;
 import br.furb.glossario.model.data.IO;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,13 +20,15 @@ public class AppAddTermoLocal extends javax.swing.JDialog {
 
     private Glossario glossario = new Glossario();
     private ArrayList<Obra> tempObras = new ArrayList<Obra>();
+    private AppUI parent;
     
     /**
      * Creates new form AppAddTermoBasico
      */
     public AppAddTermoLocal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        glossario = ((AppUI)parent).getGlossario();
+        this.parent = (AppUI)parent;
+        glossario = this.parent.getGlossario();
         initComponents();
     }
 
@@ -362,8 +363,13 @@ public class AppAddTermoLocal extends javax.swing.JDialog {
             this.tempObras.clear();  
             IO.saveData(glossario);
         }
+        catch (IllegalArgumentException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, rootPaneCheckingEnabled, e.getMessage());
+            error.setVisible(true);
+        }
         catch (IOException e) {
-            
+            AppErrorPopup error = new AppErrorPopup(parent, rootPaneCheckingEnabled, e.getMessage());
+            error.setVisible(true);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -397,28 +403,28 @@ public class AppAddTermoLocal extends javax.swing.JDialog {
     }//GEN-LAST:event_rdbJogoActionPerformed
 
     private void btnSalvarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarObrasActionPerformed
-        var categoria = btgCategoria.getSelection().getActionCommand();
-        EnumCategoria eCategoria = EnumCategoria.valueOf(categoria.toUpperCase());
-        
-        var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
-        tempObras.add(obra);
-        
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Título");
-        model.addColumn("Ano Lançamento");
-        model.addColumn("Categoria");
-        
-        /*
-        model.addRow();
-        
-        tblObras.getModel().ad
-        
-        DefaultListModel model = new DefaultListModel();
-        model.addElement(obra.getTitulo());
-        
-        lstObrasAdicionadas.setModel(model);
-        */
-        clearObra();
+        try {
+            var categoria = btgCategoria.getSelection().getActionCommand();
+            EnumCategoria eCategoria = EnumCategoria.valueOf(categoria.toUpperCase());
+
+            var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
+            tempObras.add(obra);
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Título");
+            model.addColumn("Ano Lançamento");
+            model.addColumn("Categoria");
+
+            clearObra();
+        }
+        catch (NumberFormatException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, true, "O ano precisa ser um número!");
+            error.setVisible(true);
+        }
+        catch (IllegalArgumentException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, true, e.getMessage());
+            error.setVisible(true);
+        }
     }//GEN-LAST:event_btnSalvarObrasActionPerformed
 
     /**
