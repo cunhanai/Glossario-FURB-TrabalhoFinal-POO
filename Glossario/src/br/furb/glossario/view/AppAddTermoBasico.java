@@ -7,6 +7,8 @@ package br.furb.glossario.view;
 import br.furb.glossario.model.EnumCategoria;
 import br.furb.glossario.model.Glossario;
 import br.furb.glossario.model.Obra;
+import br.furb.glossario.model.data.IO;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,7 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
      */
     public AppAddTermoBasico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        glossario = ((AppUI)parent).getGlossario();
         initComponents();
     }
 
@@ -63,6 +66,11 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlAdicionarTermo.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar Termo"));
 
@@ -330,11 +338,17 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTermoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras);
-        txtTermo.setText("");
-        txtDescricao.setText("");
-        clearObra();
-        this.tempObras.clear();
+        try {
+            glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras);
+            txtTermo.setText("");
+            txtDescricao.setText("");
+            clearObra();
+            this.tempObras.clear();
+            IO.saveData(glossario);
+        }
+        catch (IOException e) {
+            
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void clearObra() {
@@ -378,19 +392,12 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
         model.addColumn("Título");
         model.addColumn("Ano Lançamento");
         model.addColumn("Categoria");
-        
-        /*
-        model.addRow();
-        
-        tblObras.getModel().ad
-        
-        DefaultListModel model = new DefaultListModel();
-        model.addElement(obra.getTitulo());
-        
-        lstObrasAdicionadas.setModel(model);
-        */
         clearObra();
     }//GEN-LAST:event_btnSalvarObrasActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

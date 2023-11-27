@@ -34,6 +34,10 @@ public class Glossario implements Serializable {
     }
     
     public ArrayList<Termo> getTermos() {
-        return termos;
+        return termos; 
     }
+    
+    public void addTermos(ArrayList<Termo> termos) {
+        termos.addAll(termos);
+    } 
 }

@@ -4,12 +4,13 @@
  */
 package br.furb.glossario.view;
 
-import br.furb.glossario.model.EnumCategoria;
 import br.furb.glossario.model.Glossario;
 import br.furb.glossario.model.Termo;
 import br.furb.glossario.model.Local;
 import br.furb.glossario.model.Obra;
 import br.furb.glossario.model.Personagem;
+import br.furb.glossario.model.data.IO;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -24,23 +25,21 @@ public class AppUI extends javax.swing.JFrame {
      * Creates new form AppUI
      */
     public AppUI() {
-        glossario.incluirTermo("termo teste", "describe", new ArrayList<Obra>());
-        var obra1 = new Obra("titulp", 123, EnumCategoria.JOGO);
-        var obra2 = new Obra("rfff", 3444, EnumCategoria.LIVRO);
-        
-        var array = new ArrayList<Obra>();
-        array.add(obra2);
-        
-        glossario.incluirTermo("termo2", "sdddd", array);
-        
-        array.add(obra1);
-        var atores = new ArrayList<String>();
-        atores.add("ana");
-        glossario.incluirTermo("dsff", "esfsfsdf", array, "dsdfffaRFGF", "dahdkjf", atores);
-        
-        glossario.incluirTermo("dsff", "esfsfsdf", array, "hist");
+        try {
+            glossario = (Glossario)IO.readData();
+        }
+        catch (IOException e) {
+        }
         
         initComponents();
+    }
+    
+    protected void addTermos(ArrayList<Termo> termos) {
+        glossario.addTermos(termos);
+    }
+    
+    protected Glossario getGlossario() {
+        return glossario;
     }
 
     /**
@@ -65,6 +64,11 @@ public class AppUI extends javax.swing.JFrame {
         nmiNovoLocal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         pnlTermos.setBorder(javax.swing.BorderFactory.createTitledBorder("Termos"));
 
@@ -263,14 +267,9 @@ public class AppUI extends javax.swing.JFrame {
         return termosListado;
     }
     
-    private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisaTermoActionPerformed
-
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+    private void atualizarGrid() {
         EnumTipoListagem tipo = EnumTipoListagem.valueOf(cmbTipoListagem.getSelectedItem().toString().toUpperCase());
-        
-        var termos = listarTermos(tipo, txtPesquisaTermo.getText());
+        var termos = listarTermos(tipo, txtPesquisaTermo.getText());    
         
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(new String [] {
             "Tipo", "Termo", "Descrição", "História", "Caracteristicas", "Feitos", "Atores", "Obras"
@@ -292,7 +291,7 @@ public class AppUI extends javax.swing.JFrame {
                 isPersonagem ? ((Personagem)termo).getCaracteristica() : "",
                 isPersonagem ? ((Personagem)termo).getFeitos() : "",
                 isPersonagem ? String.join(" - ", ((Personagem)termo).getAtores()) : "",
-                obras.size() > 0 ? String.join("; ", obras) : "Não possui obra vinculada"
+                !obras.isEmpty() ? String.join("; ", obras) : "Não possui obra vinculada"
             };
 
             model.addRow(obj);
@@ -300,6 +299,14 @@ public class AppUI extends javax.swing.JFrame {
 
         tblTermos.setModel(model);
         
+    }
+    
+    private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaTermoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        atualizarGrid();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void nmiNovoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nmiNovoLocalActionPerformed
@@ -318,8 +325,12 @@ public class AppUI extends javax.swing.JFrame {
     }//GEN-LAST:event_mniNovoPersonagemActionPerformed
 
     private void cmbTipoListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoListagemActionPerformed
-
+        atualizarGrid();
     }//GEN-LAST:event_cmbTipoListagemActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        atualizarGrid();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
