@@ -15,13 +15,13 @@ public class Local extends Termo implements Serializable {
 
     private String historia;
 
-    protected Local(String nome, String descricao, ArrayList<Obra> obras, String historia) {
+    protected Local(String nome, String descricao, ArrayList<Obra> obras, String historia) throws IllegalArgumentException {
         super(nome, descricao, obras);
-        this.historia = historia;
+        setHistoria(historia);
     }
 
 //------------------------------------------------------------------------------
-    public void setHistoria(String historia) {
+    public void setHistoria(String historia) throws IllegalArgumentException {
         if (historia.isBlank()) {
             throw new IllegalArgumentException("Entrada para historia "
                     + "invalida.");
