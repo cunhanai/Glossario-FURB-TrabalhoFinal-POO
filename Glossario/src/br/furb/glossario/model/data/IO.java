@@ -24,6 +24,11 @@ public class IO {
     private IO() {
     }
 
+    /**
+     * Salva as informacoes recebidas das UIs
+     * @param termos Termos do glossario
+     * @throws IOException Lanca uma excessao a ser tratada
+     */
     public static void saveData(Glossario termos) throws IOException {
         File dataBase = new File(caminho);
 
@@ -42,6 +47,11 @@ public class IO {
         }
     }
 
+    /**
+     * Le as informacoes da data base e retorna um objeto
+     * @return Um objeto da data base
+     * @throws IOException Lanca uma escessao a ser tratada
+     */
     public static Object readData() throws IOException {
         File dataBase = new File(caminho);
         
