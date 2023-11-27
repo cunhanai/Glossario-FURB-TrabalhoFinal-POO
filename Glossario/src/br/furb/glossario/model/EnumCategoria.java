@@ -5,7 +5,7 @@
 package br.furb.glossario.model;
 
 /**
- *
+ * Categoria de obras
  * @author anaj2
  */
 public enum EnumCategoria {
