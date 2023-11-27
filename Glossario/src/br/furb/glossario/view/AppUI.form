@@ -106,10 +106,10 @@
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="txtPesquisaTermo" min="-2" pref="721" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBox1" pref="393" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <Component id="cmbTipoListagem" min="-2" pref="274" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="btnPesquisar" min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -122,7 +122,7 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtPesquisaTermo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbTipoListagem" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cmbTipoListagem">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -158,7 +158,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTipoListagemActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -174,7 +174,7 @@
             <Component class="javax.swing.JTable" name="tblTermos">
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(new String [] {&#xa;        &quot;Tipo&quot;, &quot;Termo&quot;, &quot;Descri&#xe7;&#xe3;o&quot;, &quot;Hist&#xf3;ria&quot;, &quot;Caracteristicas&quot;, &quot;Feitos&quot;, &quot;Atores&quot;, &quot;Obras&quot;&#xa;    }, 0);&#xa;&#xa;for (Termo termo : listarTermos()) {&#xa;    boolean isLocal = termo instanceof Local;&#xa;    boolean isPersonagem = termo instanceof Personagem;&#xa;    ArrayList&lt;String&gt; obras = new ArrayList&lt;&gt;();&#xa;&#xa;    for (Obra obra : termo.getObras())&#xa;        obras.add(obra.toString());&#xa;&#xa;    Object[] obj = new Object[] {&#xa;        termo.getTipoTermoString(),&#xa;        termo.getNome(),&#xa;        termo.getDescricao(),&#xa;        isLocal ? ((Local)termo).getHistoria() : &quot;&quot;,&#xa;        isPersonagem ? ((Personagem)termo).getCaracteristica() : &quot;&quot;,&#xa;        isPersonagem ? ((Personagem)termo).getFeitos() : &quot;&quot;,&#xa;        isPersonagem ? String.join(&quot; - &quot;, ((Personagem)termo).getAtores()) : &quot;&quot;,&#xa;        obras.size() &gt; 0 ? String.join(&quot;; &quot;, obras) : &quot;N&#xe3;o possui obra vinculada&quot;&#xa;};&#xa;&#xa;    model.addRow(obj);&#xa;}&#xa;&#xa;tblTermos.setModel(model);">
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(new String [] {&#xa;    &quot;Tipo&quot;, &quot;Termo&quot;, &quot;Descri&#xe7;&#xe3;o&quot;, &quot;Hist&#xf3;ria&quot;, &quot;Caracteristicas&quot;, &quot;Feitos&quot;, &quot;Atores&quot;, &quot;Obras&quot;&#xa;}, 0);&#xa;&#xa;for (Termo termo : listarTermos()) {&#xa;    boolean isLocal = termo instanceof Local;&#xa;    boolean isPersonagem = termo instanceof Personagem;&#xa;    ArrayList&lt;String&gt; obras = new ArrayList&lt;&gt;();&#xa;&#xa;    for (Obra obra : termo.getObras())&#xa;    obras.add(obra.toString());&#xa;&#xa;    Object[] obj = new Object[] {&#xa;        termo.getTipoTermoString(),&#xa;        termo.getNome(),&#xa;        termo.getDescricao(),&#xa;        isLocal ? ((Local)termo).getHistoria() : &quot;&quot;,&#xa;        isPersonagem ? ((Personagem)termo).getCaracteristica() : &quot;&quot;,&#xa;        isPersonagem ? ((Personagem)termo).getFeitos() : &quot;&quot;,&#xa;        isPersonagem ? String.join(&quot; - &quot;, ((Personagem)termo).getAtores()) : &quot;&quot;,&#xa;        obras.size() &gt; 0 ? String.join(&quot;; &quot;, obras) : &quot;N&#xe3;o possui obra vinculada&quot;&#xa;    };&#xa;&#xa;    model.addRow(obj);&#xa;}&#xa;&#xa;tblTermos.setModel(model);">
                   <Table columnCount="8" rowCount="4">
                     <Column editable="false" title="Tipo" type="java.lang.Object"/>
                     <Column editable="false" title="Termo" type="java.lang.Object"/>

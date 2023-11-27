@@ -24,6 +24,22 @@ public class AppUI extends javax.swing.JFrame {
      * Creates new form AppUI
      */
     public AppUI() {
+        glossario.incluirTermo("termo teste", "describe", new ArrayList<Obra>());
+        var obra1 = new Obra("titulp", 123, EnumCategoria.JOGO);
+        var obra2 = new Obra("rfff", 3444, EnumCategoria.LIVRO);
+        
+        var array = new ArrayList<Obra>();
+        array.add(obra2);
+        
+        glossario.incluirTermo("termo2", "sdddd", array);
+        
+        array.add(obra1);
+        var atores = new ArrayList<String>();
+        atores.add("ana");
+        glossario.incluirTermo("dsff", "esfsfsdf", array, "dsdfffaRFGF", "dahdkjf", atores);
+        
+        glossario.incluirTermo("dsff", "esfsfsdf", array, "hist");
+        
         initComponents();
     }
 
@@ -39,7 +55,7 @@ public class AppUI extends javax.swing.JFrame {
         pnlTermos = new javax.swing.JPanel();
         txtPesquisaTermo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTipoListagem = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTermos = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
@@ -65,10 +81,10 @@ public class AppUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Personagem", "Local", "Outros" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipoListagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Personagem", "Local", "Outros" }));
+        cmbTipoListagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbTipoListagemActionPerformed(evt);
             }
         });
 
@@ -139,10 +155,10 @@ public class AppUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(pnlTermosLayout.createSequentialGroup()
                         .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, 393, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(cmbTipoListagem, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTermosLayout.setVerticalGroup(
@@ -151,7 +167,7 @@ public class AppUI extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipoListagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
@@ -215,12 +231,75 @@ public class AppUI extends javax.swing.JFrame {
         return glossario.getTermos();
     }
     
+    private ArrayList<Termo> listarTermos(EnumTipoListagem tipo, String texto) {
+        var termos = glossario.getTermos();
+        ArrayList<Termo> termosListado = new ArrayList<>();
+        
+        if (tipo == EnumTipoListagem.PERSONAGEM) {            
+            for (Termo termo : termos) {
+                if (termo instanceof Personagem && termo.getNome().contains(texto))
+                    termosListado.add(termo);
+            }
+        }
+        else if (tipo == EnumTipoListagem.LOCAL) {
+            for (Termo termo : termos) {
+                if (termo instanceof Local && termo.getNome().contains(texto))
+                    termosListado.add(termo);
+            }
+        }
+        else if (tipo == EnumTipoListagem.OUTROS) {
+            for (Termo termo : termos) {
+                if (!(termo instanceof Local) && !(termo instanceof Personagem) && termo.getNome().contains(texto))
+                    termosListado.add(termo);
+            }
+        }
+        else {
+            for (Termo termo : termos) {
+                if (termo.getNome().contains(texto))
+                    termosListado.add(termo);
+            }
+        }
+        
+        return termosListado;
+    }
+    
     private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisaTermoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
+        EnumTipoListagem tipo = EnumTipoListagem.valueOf(cmbTipoListagem.getSelectedItem().toString().toUpperCase());
+        
+        var termos = listarTermos(tipo, txtPesquisaTermo.getText());
+        
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(new String [] {
+            "Tipo", "Termo", "Descrição", "História", "Caracteristicas", "Feitos", "Atores", "Obras"
+        }, 0);
+
+        for (Termo termo : termos) {
+            boolean isLocal = termo instanceof Local;
+            boolean isPersonagem = termo instanceof Personagem;
+            ArrayList<String> obras = new ArrayList<>();
+
+            for (Obra obra : termo.getObras())
+            obras.add(obra.toString());
+
+            Object[] obj = new Object[] {
+                termo.getTipoTermoString(),
+                termo.getNome(),
+                termo.getDescricao(),
+                isLocal ? ((Local)termo).getHistoria() : "",
+                isPersonagem ? ((Personagem)termo).getCaracteristica() : "",
+                isPersonagem ? ((Personagem)termo).getFeitos() : "",
+                isPersonagem ? String.join(" - ", ((Personagem)termo).getAtores()) : "",
+                obras.size() > 0 ? String.join("; ", obras) : "Não possui obra vinculada"
+            };
+
+            model.addRow(obj);
+        }
+
+        tblTermos.setModel(model);
+        
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void nmiNovoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nmiNovoLocalActionPerformed
@@ -238,9 +317,9 @@ public class AppUI extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_mniNovoPersonagemActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cmbTipoListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoListagemActionPerformed
+
+    }//GEN-LAST:event_cmbTipoListagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,7 +358,7 @@ public class AppUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbTipoListagem;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuAdicionar;
     private javax.swing.JMenuBar menuBar;

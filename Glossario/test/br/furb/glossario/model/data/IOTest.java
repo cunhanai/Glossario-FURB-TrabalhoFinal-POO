@@ -15,14 +15,12 @@ import org.junit.Before;
  */
 public class IOTest {
     
-    private IO io;
-    
     public IOTest() {
     }
     
     @Before
     public void setUp(){
-        io = new IO();
+        
     }
     
     @After
