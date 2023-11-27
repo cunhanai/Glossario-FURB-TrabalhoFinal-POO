@@ -32,4 +32,8 @@ public class Glossario implements Serializable {
         Local local = new Local(nome, descricao, obras, historia);
         termos.add(local);
     }
+    
+    public ArrayList<Termo> getTermos() {
+        return termos;
+    }
 }

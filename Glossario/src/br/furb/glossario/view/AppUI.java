@@ -4,7 +4,13 @@
  */
 package br.furb.glossario.view;
 
+import br.furb.glossario.model.EnumCategoria;
 import br.furb.glossario.model.Glossario;
+import br.furb.glossario.model.Termo;
+import br.furb.glossario.model.Local;
+import br.furb.glossario.model.Obra;
+import br.furb.glossario.model.Personagem;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,6 +39,9 @@ public class AppUI extends javax.swing.JFrame {
         pnlTermos = new javax.swing.JPanel();
         txtPesquisaTermo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTermos = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         menuAdicionar = new javax.swing.JMenu();
         mniNovoTermo = new javax.swing.JMenuItem();
@@ -56,25 +65,97 @@ public class AppUI extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Personagem", "Local", "Outros" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        tblTermos.setAutoCreateRowSorter(true);
+        tblTermos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Tipo", "Termo", "Descrição", "História", "Caracteristicas", "Feitos", "Atores", "Obras"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(new String [] {
+            "Tipo", "Termo", "Descrição", "História", "Caracteristicas", "Feitos", "Atores", "Obras"
+        }, 0);
+
+        for (Termo termo : listarTermos()) {
+            boolean isLocal = termo instanceof Local;
+            boolean isPersonagem = termo instanceof Personagem;
+            ArrayList<String> obras = new ArrayList<>();
+
+            for (Obra obra : termo.getObras())
+            obras.add(obra.toString());
+
+            Object[] obj = new Object[] {
+                termo.getTipoTermoString(),
+                termo.getNome(),
+                termo.getDescricao(),
+                isLocal ? ((Local)termo).getHistoria() : "",
+                isPersonagem ? ((Personagem)termo).getCaracteristica() : "",
+                isPersonagem ? ((Personagem)termo).getFeitos() : "",
+                isPersonagem ? String.join(" - ", ((Personagem)termo).getAtores()) : "",
+                obras.size() > 0 ? String.join("; ", obras) : "Não possui obra vinculada"
+            };
+
+            model.addRow(obj);
+        }
+
+        tblTermos.setModel(model);
+        tblTermos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblTermos.setEditingColumn(0);
+        tblTermos.setEditingRow(0);
+        tblTermos.setShowGrid(false);
+        jScrollPane2.setViewportView(tblTermos);
+        if (tblTermos.getColumnModel().getColumnCount() > 0) {
+            tblTermos.getColumnModel().getColumn(7).setMinWidth(200);
+            tblTermos.getColumnModel().getColumn(7).setPreferredWidth(200);
+        }
+
         javax.swing.GroupLayout pnlTermosLayout = new javax.swing.GroupLayout(pnlTermos);
         pnlTermos.setLayout(pnlTermosLayout);
         pnlTermosLayout.setHorizontalGroup(
             pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTermosLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisar)
-                .addContainerGap(580, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(pnlTermosLayout.createSequentialGroup()
+                        .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, 0, 393, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTermosLayout.setVerticalGroup(
             pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTermosLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(22, 22, 22)
                 .addGroup(pnlTermosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisaTermo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuAdicionar.setText("Adicionar");
@@ -115,7 +196,7 @@ public class AppUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -123,16 +204,15 @@ public class AppUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlTermos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlTermos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listarTermos() {
-        
-        
+    private ArrayList<Termo> listarTermos() {
+        return glossario.getTermos();
     }
     
     private void txtPesquisaTermoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaTermoActionPerformed
@@ -157,6 +237,10 @@ public class AppUI extends javax.swing.JFrame {
         AppAddTermoPersonagem dialog = new AppAddTermoPersonagem(this, true);
         dialog.setVisible(true);
     }//GEN-LAST:event_mniNovoPersonagemActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,12 +279,15 @@ public class AppUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu menuAdicionar;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem mniNovoPersonagem;
     private javax.swing.JMenuItem mniNovoTermo;
     private javax.swing.JMenuItem nmiNovoLocal;
     private javax.swing.JPanel pnlTermos;
+    private javax.swing.JTable tblTermos;
     private javax.swing.JTextField txtPesquisaTermo;
     // End of variables declaration//GEN-END:variables
 }

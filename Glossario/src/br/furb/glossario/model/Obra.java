@@ -54,4 +54,9 @@ public class Obra implements Serializable {
     public EnumCategoria getCategoria() {
         return categoria;
     }
+    
+    @Override
+    public String toString() {
+        return titulo + " - " + anoLancamento + " - " + categoria.toString().toLowerCase();
+    }
 }
