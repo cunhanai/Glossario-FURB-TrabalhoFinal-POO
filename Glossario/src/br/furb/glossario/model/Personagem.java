@@ -26,10 +26,10 @@ public class Personagem extends Termo implements Serializable {
      * @param feitos (String) Feitos da personagem
      * @param atores (ArrayList<String>) Atores(as) que interpretaram essa personagem
      */
-    protected Personagem(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) {
+    protected Personagem(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) throws IllegalArgumentException{
         super(nome, descricao, obras);
-        this.caracteristica = caracteristica;
-        this.feitos = feitos;
+        addCaracteristica(caracteristica);
+        addFeitos(feitos);
         this.atores = atores;
     }
 
@@ -37,7 +37,7 @@ public class Personagem extends Termo implements Serializable {
      * Adiciona as caracteristicas a personagem
      * @param entrada (String) Entrada para caracteristicas da personagem
      */
-    public void addCaracteristica(String entrada) {
+    public void addCaracteristica(String entrada) throws IllegalArgumentException {
         if (entrada.isBlank()){
             throw new IllegalArgumentException("Entrada invalida.");
         }
@@ -48,7 +48,7 @@ public class Personagem extends Termo implements Serializable {
      * Adiciona os atores(as) que interpretaram essa personagem
      * @param entrada (String) Entrada para os(as) atores(as) que interpretaram essa personagem
      */
-    public void addAtores(String entrada) {
+    public void addAtores(String entrada) throws IllegalArgumentException {
         if (entrada.isBlank()){
             throw new IllegalArgumentException("Entrada invalida.");
         }
@@ -59,7 +59,7 @@ public class Personagem extends Termo implements Serializable {
      * Adiciona os feitos dessa personagem
      * @param entrada (String) Entrada para os feitos dessa personagem
      */
-    public void addFeitos(String entrada) {
+    public void addFeitos(String entrada) throws IllegalArgumentException {
         if (entrada.isBlank()){
             throw new IllegalArgumentException("Entrada invalida.");
         }
