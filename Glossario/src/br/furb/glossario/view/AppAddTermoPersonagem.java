@@ -7,8 +7,9 @@ package br.furb.glossario.view;
 import br.furb.glossario.model.EnumCategoria;
 import br.furb.glossario.model.Glossario;
 import br.furb.glossario.model.Obra;
+import br.furb.glossario.model.data.IO;
+import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +27,7 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
      */
     public AppAddTermoPersonagem(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        glossario = ((AppUI)parent).getGlossario();
         initComponents();
     }
 
@@ -73,6 +75,11 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         pnlAdicionarLocal.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar Personagem"));
 
@@ -396,18 +403,25 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTermoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras, txtCaracteristicas.getText(), txtFeitos.getText(), tempAtor);
-        txtTermo.setText("");
-        txtDescricao.setText("");
-        txtCaracteristicas.setText("");
-        txtAtor.setText("");
-        txtFeitos.setText("");
-        clearObra();
-        this.tempObras.clear();     
-        this.tempAtor.clear();
+        try {
+            glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras, txtCaracteristicas.getText(), txtFeitos.getText(), tempAtor);
+            txtTermo.setText("");
+            txtDescricao.setText("");
+            txtCaracteristicas.setText("");
+            txtAtor.setText("");
+            txtFeitos.setText("");
+            clearObra();
+            this.tempObras.clear();     
+            this.tempAtor.clear();
+            IO.saveData(glossario);
+        }
+        catch (IOException e) {
+            
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void clearObra() {        txtObraTitulo.setText("");
+    private void clearObra() {        
+        txtObraTitulo.setText("");
         txtObraAnoLancamento.setText("");
         btgCategoria.clearSelection();
     }
@@ -448,16 +462,6 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
         model.addColumn("Ano Lançamento");
         model.addColumn("Categoria");
         
-        /*
-        model.addRow();
-        
-        tblObras.getModel().ad
-        
-        DefaultListModel model = new DefaultListModel();
-        model.addElement(obra.getTitulo());
-        
-        lstObrasAdicionadas.setModel(model);
-        */
         clearObra();
     }//GEN-LAST:event_btnSalvarObrasActionPerformed
 
@@ -469,6 +473,10 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
         tempAtor.add(txtAtor.getText());
         txtAtor.setText("");
     }//GEN-LAST:event_btnAdicionarAtorActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

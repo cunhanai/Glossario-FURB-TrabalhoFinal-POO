@@ -7,6 +7,8 @@ package br.furb.glossario.view;
 import br.furb.glossario.model.EnumCategoria;
 import br.furb.glossario.model.Glossario;
 import br.furb.glossario.model.Obra;
+import br.furb.glossario.model.data.IO;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,7 @@ public class AppAddTermoLocal extends javax.swing.JDialog {
      */
     public AppAddTermoLocal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        glossario = ((AppUI)parent).getGlossario();
         initComponents();
     }
 
@@ -349,12 +352,18 @@ public class AppAddTermoLocal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTermoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras, txtHistoria.getText());
-        txtTermo.setText("");
-        txtDescricao.setText("");
-        txtHistoria.setText("");
-        clearObra();
-        this.tempObras.clear();        
+        try {
+            glossario.incluirTermo(txtTermo.getText(), txtDescricao.getText(), tempObras, txtHistoria.getText());
+            txtTermo.setText("");
+            txtDescricao.setText("");
+            txtHistoria.setText("");
+            clearObra();
+            this.tempObras.clear();  
+            IO.saveData(glossario);
+        }
+        catch (IOException e) {
+            
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void clearObra() {        txtObraTitulo.setText("");
