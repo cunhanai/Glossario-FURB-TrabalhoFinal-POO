@@ -21,7 +21,7 @@ public class Personagem extends Termo implements Serializable {
      * Cria um novo termo de personagem na lista
      * @param nome (String) Nome da personagem
      * @param descricao (String) Descricao da personagem
-     * @param obras (ArrayList<Obras>) Lista das obras onde a personagem aparece
+     * @param obras (ArrayList<Obra>) Lista das obras onde a personagem aparece
      * @param caracteristica (String) Caracteristicas da personagem
      * @param feitos (String) Feitos da personagem
      * @param atores (ArrayList<String>) Atores(as) que interpretaram essa personagem
