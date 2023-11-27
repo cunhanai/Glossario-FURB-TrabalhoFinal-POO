@@ -24,7 +24,7 @@ public class Glossario implements Serializable {
      * @param descricao (String) Descricao do termo
      * @param obras (ArrayList<Obra>) Lista de obras onde esse termo aparece
      */
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras) {
+    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras) throws IllegalArgumentException {
         Termo termo = new Termo(nome, descricao, obras);
         termos.add(termo);
     }
@@ -38,7 +38,7 @@ public class Glossario implements Serializable {
      * @param feitos (String) Feitos da personagem
      * @param atores (ArrayList<String>) Atores(as) que interpretaram essa personagem
      */
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) {
+    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String caracteristica, String feitos, ArrayList<String> atores) throws IllegalArgumentException {
         Personagem personagem = new Personagem(nome, descricao, obras, caracteristica, feitos, atores);
         termos.add(personagem);
     }
@@ -50,7 +50,7 @@ public class Glossario implements Serializable {
      * @param obras (ArrayList<Obra>) Lista das obras que retratam/se passam nesse local
      * @param historia (String) A historia desse local
      */
-    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String historia) {
+    public void incluirTermo(String nome, String descricao, ArrayList<Obra> obras, String historia) throws IllegalArgumentException {
         Local local = new Local(nome, descricao, obras, historia);
         termos.add(local);
     }
