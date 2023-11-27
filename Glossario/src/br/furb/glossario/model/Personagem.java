@@ -18,7 +18,7 @@ public class Personagem extends Termo implements Serializable {
     private ArrayList<String> atores = new ArrayList<>();
     
     /**
-     * Cria um novo termo de personagem na lista
+     * Cria um novo termo de personagem na data base
      * @param nome (String) Nome da personagem
      * @param descricao (String) Descricao da personagem
      * @param obras (ArrayList<Obra>) Lista das obras onde a personagem aparece
