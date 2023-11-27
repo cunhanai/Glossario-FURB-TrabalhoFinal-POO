@@ -16,14 +16,14 @@ public class Obra implements Serializable {
     private int anoLancamento;
     private EnumCategoria categoria;
 
-    public Obra(String titulo, int anoLancamento, EnumCategoria categoria) {
-        this.titulo = titulo;
-        this.anoLancamento = anoLancamento;
-        this.categoria = categoria;
+    public Obra(String titulo, int anoLancamento, EnumCategoria categoria) throws IllegalArgumentException {
+        setTitulo(titulo);
+        setAnoLancamento(anoLancamento);
+        setCategoria(categoria);
     }
 
 //------------------------------------------------------------------------------
-    public void setTitulo(String titulo) {
+    public void setTitulo(String titulo) throws IllegalArgumentException {
         if (titulo.isBlank()) {
             throw new IllegalArgumentException("Entrada para titulo "
                     + "invalida.");
@@ -31,7 +31,7 @@ public class Obra implements Serializable {
         this.titulo = titulo;
     }
 
-    public void setAnoLancamento(int anoLancamento) {
+    public void setAnoLancamento(int anoLancamento) throws IllegalArgumentException {
         if (anoLancamento >= 0) {
             throw new IllegalArgumentException("Entrada para ano de "
                     + "lancamento invalida.");

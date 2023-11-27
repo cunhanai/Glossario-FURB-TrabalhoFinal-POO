@@ -21,13 +21,15 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
 
     private Glossario glossario = new Glossario();
     private ArrayList<Obra> tempObras = new ArrayList<Obra>();
+    private AppUI parent;
     
     /**
      * Creates new form AppAddTermoBasico
      */
     public AppAddTermoBasico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        glossario = ((AppUI)parent).getGlossario();
+        this.parent = (AppUI)parent;
+        glossario = this.parent.getGlossario();
         initComponents();
     }
 
@@ -162,6 +164,7 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
         });
 
         btgCategoria.add(rdbOutro);
+        rdbOutro.setSelected(true);
         rdbOutro.setText("Outro");
         rdbOutro.setActionCommand(rdbOutro.getText());
         rdbOutro.addActionListener(new java.awt.event.ActionListener() {
@@ -347,7 +350,8 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
             IO.saveData(glossario);
         }
         catch (IOException e) {
-            
+            AppErrorPopup error = new AppErrorPopup(parent, rootPaneCheckingEnabled, e.getMessage());
+            error.setVisible(true);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -382,17 +386,28 @@ public class AppAddTermoBasico extends javax.swing.JDialog {
     }//GEN-LAST:event_rdbJogoActionPerformed
 
     private void btnSalvarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarObrasActionPerformed
-        var categoria = btgCategoria.getSelection().getActionCommand();
-        EnumCategoria eCategoria = EnumCategoria.valueOf(categoria.toUpperCase());
+        try {
+            var categoria = btgCategoria.getSelection().getActionCommand();
+            EnumCategoria eCategoria = EnumCategoria.valueOf(categoria.toUpperCase());
+
+            var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
+            tempObras.add(obra);
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Título");
+            model.addColumn("Ano Lançamento");
+            model.addColumn("Categoria");
+            clearObra();
+        }
+        catch (NumberFormatException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, true, "O ano precisa ser um número!");
+            error.setVisible(true);
+        }
+        catch (IllegalArgumentException e) {
+            AppErrorPopup error = new AppErrorPopup(parent, true, e.getMessage());
+            error.setVisible(true);
+        }
         
-        var obra = new Obra(txtObraTitulo.getText(), Integer.parseInt(txtObraAnoLancamento.getText()), eCategoria);
-        tempObras.add(obra);
-        
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Título");
-        model.addColumn("Ano Lançamento");
-        model.addColumn("Categoria");
-        clearObra();
     }//GEN-LAST:event_btnSalvarObrasActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

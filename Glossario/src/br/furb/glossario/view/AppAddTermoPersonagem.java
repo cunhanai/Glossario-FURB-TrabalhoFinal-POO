@@ -225,6 +225,7 @@ public class AppAddTermoPersonagem extends javax.swing.JDialog {
         });
 
         btgCategoria.add(rdbOutro);
+        rdbOutro.setSelected(true);
         rdbOutro.setText("Outro");
         rdbOutro.setActionCommand(rdbOutro.getText());
         rdbOutro.addActionListener(new java.awt.event.ActionListener() {
